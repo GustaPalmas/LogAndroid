@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">CadatroLogVeiculo</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_dashboard">Painel</string>
+    <string name="title_notifications">Notificações</string>
+    <string name="title_cad_motorista">CadMotorista</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+
+    <string-array name="categoria_usuario">
+        <item> A</item>
+        <item> B</item>
+        <item> AB</item>
+        <item> AC</item>
+        <item> AD</item>
+        <item> AE</item>
+    </string-array>
+</resources>
