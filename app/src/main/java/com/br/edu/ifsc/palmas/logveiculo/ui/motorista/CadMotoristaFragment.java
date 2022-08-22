@@ -1,4 +1,4 @@
-package com.br.edu.ifsc.palmas.logveiculo;
+package com.br.edu.ifsc.palmas.logveiculo.ui.motorista;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.br.edu.ifsc.palmas.logveiculo.R;
 
 /**
  * A simple {@link Fragment} subclass.

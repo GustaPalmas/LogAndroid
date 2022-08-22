@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CadMotoristaFragment">
+    tools:context=".ui.motorista.CadMotoristaFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nome" />
+                android:text="Nome Completo" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName"
@@ -31,7 +31,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Categoria" />
+                android:text="Categoria Habilitação" />
 
             <Spinner
                 android:id="@+id/spinner"
@@ -56,7 +56,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Numero de CNH" />
+                android:text="Número de CNH" />
 
             <EditText
                 android:id="@+id/editTextNumber"
@@ -103,6 +103,12 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="numberPassword" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Concordo com os itens anteriores" />
 
             <Button
                 android:id="@+id/button"
