@@ -117,6 +117,17 @@ public class Motorista {
     //Metodo retorna o objeto com dados no formato JSON
     public JSONObject toJsonObject () {
         JSONObject json = new JSONObject();
+        try {
+            json.put("id", this.cpf);
+            json.put("id", this.cnh);
+            json.put("nome", this.nome);
+            json.put("senha", this.senha);
+            json.put("email", this.email);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return json;
+    }
 
     }
 }
