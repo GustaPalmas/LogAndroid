@@ -7,6 +7,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.br.edu.ifsc.palmas.logveiculo.R;
 
@@ -25,6 +29,17 @@ public class CadMotoristaFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private EditText etNome;
+    private EditText etEmail;
+    private EditText etSenha;
+    private EditText etCnh;
+    private EditText etCpf;
+    private EditText etData;
+    private CheckBox cbAceite;
+    private Spinner Categoria;
+    private Button btSalvar;
+
 
     public CadMotoristaFragment() {
         // Required empty public constructor
@@ -54,13 +69,27 @@ public class CadMotoristaFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_cad_motorista, container, false);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cad_motorista, container, false);
+        this.etNome = (EditText) root.findViewById(R.id.etName);
+        this.etEmail =(EditText) root.findViewById(R.id.editTextTextEmailAddress);
+        this.etSenha =(EditText) root.findViewById(R.id.editTextNumberPassword);
+        this.etCnh =(EditText) root.findViewById(R.id.editTextNumber);
+        this.etCpf =(EditText) root.findViewById(R.id.editTextTextPersonName2);
+        this.etData =(EditText) root.findViewById(R.id.editTextDate2);
+        this.cbAceite =(CheckBox) root.findViewById(R.id.checkBox);
+        this.Categoria =(Spinner) root.findViewById(R.id.spinner);
+        this.btSalvar =(Button) root.findViewById(R.id.button);
+        return root;
+
+
     }
 }

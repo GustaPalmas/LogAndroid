@@ -50,15 +50,18 @@ public class Motorista {
         this.senha = senha;
     }
 
+    public String getData() {return data;}
     public void setData(String data) {
-        SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formato =
+                new SimpleDateFormat("dd/MM/yyyy");
         try {
-            Date date = (Date) myFormat.parse(data);
+            Date date = (Date) formato.parse(data);
+//se chegar até aqui não deu erro no parser
             this.data = data;
         } catch (ParseException e) {
-            this.data="";
-            }
+            this.data = "";
         }
+    }
 
     public long getCnh() {
         return cnh;
@@ -88,16 +91,16 @@ public class Motorista {
         try{
             Integer conversor = (int) jp.get("cpf");
             this.setCpf(conversor);
-            this.setNome(String) jp.get("nome");
-            this.setSenha(String); jp.get("senha");
-            this.setEmail(String); jp.get("email");
+            this.setNome((String) jp.get("nome"));
+            this.setSenha((String) jp.get("senha"));
+            this.setEmail((String) jp.get("email"));
             boolean bool = Boolean.getBoolean(jp.get("aceito").toString());
             this.setAceito(bool);
-            this.setData(String); jp.get("data");
-            Byte conversor = (long) jp.get("cnh");
-            this.setCnh(conversor);
-            Byte conversor = (byte) jp.get("categoria");
-            this.setCategoria(conversor);
+            this.setData((String) jp.get("data"));
+            Integer numero = (int) jp.get("cnh");
+            this.setCnh(numero);
+            Byte codigo = (byte) jp.get("categoria");
+            this.setCategoria(codigo);
         }
         catch (JSONException e){
             e.printStackTrace();
@@ -105,11 +108,11 @@ public class Motorista {
     }
     //CONSTRUTOR - Inicializa os atributos para gerar Objeto Json
     public Motorista() {
-        this.setCategoria(0);
+        this.setCategoria((byte)0);
         this.setAceito(false);
         this.setCpf(0);
         this.setCnh(0);
-        this.setData(0);
+        this.setData("");
         this.setNome("");
         this.setSenha("");
         this.setEmail("");
@@ -118,11 +121,14 @@ public class Motorista {
     public JSONObject toJsonObject () {
         JSONObject json = new JSONObject();
         try {
-            json.put("id", this.cpf);
-            json.put("id", this.cnh);
-            json.put("nome", this.nome);
-            json.put("senha", this.senha);
-            json.put("email", this.email);
+            json.put("Cpf", this.cpf);
+            json.put("Cnh", this.cnh);
+            json.put("Nome", this.nome);
+            json.put("Senha", this.senha);
+            json.put("Email", this.email);
+            json.put("Data", this.data);
+            json.put("categoria", this.categoria);
+            json.put("Aceito", this.aceito);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -130,4 +136,4 @@ public class Motorista {
     }
 
     }
-}
+
