@@ -15,8 +15,8 @@ public class Motorista {
     private String senha;
     private String data;
     private byte categoria;
-    private long cpf;
-    private long cnh;
+    private String cpf;
+    private String cnh;
 
     //metodos
     public boolean isAceito() {
@@ -63,18 +63,18 @@ public class Motorista {
         }
     }
 
-    public long getCnh() {
+    public String getCnh() {
         return cnh;
     }
 
-    public void setCnh(long cnh){
+    public void setCnh(String cnh){
         this.cnh=cnh;
     }
-    public long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(long cpf){
+    public void setCpf(String cpf){
         this.cpf=cpf;
     }
 
@@ -89,16 +89,15 @@ public class Motorista {
     //construtores
     public Motorista(JSONObject jp){
         try{
-            Integer conversor = (int) jp.get("cpf");
-            this.setCpf(conversor);
+
+            this.setCpf((String) jp.get("cpf"));
             this.setNome((String) jp.get("nome"));
             this.setSenha((String) jp.get("senha"));
             this.setEmail((String) jp.get("email"));
             boolean bool = Boolean.getBoolean(jp.get("aceito").toString());
             this.setAceito(bool);
             this.setData((String) jp.get("data"));
-            Integer numero = (int) jp.get("cnh");
-            this.setCnh(numero);
+            this.setCnh((String) jp.get("cnh"));
             Byte codigo = (byte) jp.get("categoria");
             this.setCategoria(codigo);
         }
@@ -110,8 +109,8 @@ public class Motorista {
     public Motorista() {
         this.setCategoria((byte)0);
         this.setAceito(false);
-        this.setCpf(0);
-        this.setCnh(0);
+        this.setCpf("");
+        this.setCnh("");
         this.setData("");
         this.setNome("");
         this.setSenha("");

@@ -1,5 +1,6 @@
 package com.br.edu.ifsc.palmas.logveiculo.ui.motorista;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.br.edu.ifsc.palmas.logveiculo.R;
 
@@ -19,7 +21,7 @@ import com.br.edu.ifsc.palmas.logveiculo.R;
  * Use the {@link CadMotoristaFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CadMotoristaFragment extends Fragment {
+public class CadMotoristaFragment extends Fragment implements View.OnClickListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -88,8 +90,40 @@ public class CadMotoristaFragment extends Fragment {
         this.cbAceite =(CheckBox) root.findViewById(R.id.checkBox);
         this.Categoria =(Spinner) root.findViewById(R.id.spinner);
         this.btSalvar =(Button) root.findViewById(R.id.button);
+        //definindo o listener do botão
+        this.btSalvar.setOnClickListener(this);
         return root;
 
 
+
     }
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+        //verificando se é o botão salvar
+            case R.id.button:
+        //instanciando objeto de negócio
+                Motorista u = new Motorista();
+        //populando objeto com dados da tela
+                u.setNome(this.etNome.getText().toString());
+                u.setEmail(this.etEmail.getText().toString());
+                u.setSenha(this.etSenha.getText().toString());
+                u.setCnh(this.etCnh.getText().toString());
+                u.setCpf(this.etCpf.getText().toString());
+                u.setData(this.etData.getText().toString());
+                u.setAceito(this.cbAceite.isChecked());
+                u.setCategoria((byte)this.Categoria.getSelectedItemPosition());
+        //mensagem de sucesso
+                Context context = view.getContext();
+                CharSequence text = "Salvo com Sucesso!";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText (context, text, duration);
+                toast.show();
+                break;
+        }
+    }
+
+
+
+
 }
