@@ -1,5 +1,7 @@
 package com.br.edu.ifsc.palmas.logveiculo.ui.motorista;
 
+import android.view.View;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,6 +19,8 @@ public class Motorista {
     private byte categoria;
     private String cpf;
     private String cnh;
+
+
 
     //metodos
     public boolean isAceito() {

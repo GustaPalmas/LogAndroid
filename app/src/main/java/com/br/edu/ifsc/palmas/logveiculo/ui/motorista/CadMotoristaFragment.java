@@ -14,14 +14,22 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.br.edu.ifsc.palmas.logveiculo.R;
+import com.google.android.material.snackbar.Snackbar;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CadMotoristaFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CadMotoristaFragment extends Fragment implements View.OnClickListener{
+public class CadMotoristaFragment extends Fragment implements View.OnClickListener,
+        Response.ErrorListener, Response.Listener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,6 +49,12 @@ public class CadMotoristaFragment extends Fragment implements View.OnClickListen
     private CheckBox cbAceite;
     private Spinner Categoria;
     private Button btSalvar;
+    //volley
+    private RequestQueue requestQueue;
+    private JsonObjectRequest jsonObjectReq;
+    //passar a view como atributo da classe e não do método
+    View root;
+
 
 
     public CadMotoristaFragment() {
@@ -92,7 +106,16 @@ public class CadMotoristaFragment extends Fragment implements View.OnClickListen
         this.btSalvar =(Button) root.findViewById(R.id.button);
         //definindo o listener do botão
         this.btSalvar.setOnClickListener(this);
-        return root;
+        //instanciando a fila de requests - caso o objeto seja o root
+        this.requestQueue = Volley.newRequestQueue(root.getContext());
+    //instanciando a fila de requests - caso o objeto seja o view
+        this.requestQueue = Volley.newRequestQueue(root.getContext());
+    //inicializando a fila de requests do SO
+        this.requestQueue.start();
+        return this.root;
+
+
+        //return root;
 
 
 
@@ -100,11 +123,11 @@ public class CadMotoristaFragment extends Fragment implements View.OnClickListen
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-        //verificando se é o botão salvar
+            //verificando se é o botão salvar
             case R.id.button:
-        //instanciando objeto de negócio
+                //instanciando objeto de negócio
                 Motorista u = new Motorista();
-        //populando objeto com dados da tela
+                //populando objeto com dados da tela
                 u.setNome(this.etNome.getText().toString());
                 u.setEmail(this.etEmail.getText().toString());
                 u.setSenha(this.etSenha.getText().toString());
@@ -112,18 +135,66 @@ public class CadMotoristaFragment extends Fragment implements View.OnClickListen
                 u.setCpf(this.etCpf.getText().toString());
                 u.setData(this.etData.getText().toString());
                 u.setAceito(this.cbAceite.isChecked());
-                u.setCategoria((byte)this.Categoria.getSelectedItemPosition());
-        //mensagem de sucesso
-                Context context = view.getContext();
-                CharSequence text = "Salvo com Sucesso!";
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText (context, text, duration);
-                toast.show();
-                break;
+                u.setCategoria((byte) this.Categoria.getSelectedItemPosition());
+
+            //mensagem de sucesso
+            Context context = view.getContext();
+            CharSequence text = "Salvo com Sucesso!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+                //enviar objeto para o REST Server
+                jsonObjectReq = new JsonObjectRequest(
+                        Request.Method.POST,
+                        "http://10.0.2.2:8080/segServer/rest/usuario",
+                        u.toJsonObject(), this, this);
+                requestQueue.add(jsonObjectReq);
+
+            break;
         }
+
     }
 
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Snackbar mensagem = Snackbar.make(root,
+                "Ops! Houve um problema ao realizar o cadastro: " +
+                        error.toString(),Snackbar.LENGTH_LONG);
+        mensagem.show();
 
 
+    }
+
+    @Override
+    public void onResponse(Object response) {
+        String resposta = response.toString();
+        try {
+            if(resposta.equals("500")) {
+                Snackbar mensagem = Snackbar.make(root,
+                        "Erro! = " + resposta,
+                        Snackbar.LENGTH_LONG);
+                mensagem.show();
+            }
+            else {
+                //sucesso
+                //limpar campos da tela
+                this.txNome.setText("");
+                this.txEmail.setText("");
+                this.txSenha.setText("");
+                this.txCnh.setText("");
+                this.txCategoria.setText("");
+                this.txCpf.setText("");
+                this.txData.setText("");
+                this.txAceito.setText("");
+
+//mensagem de sucesso
+                Snackbar mensagem = Snackbar.make(root,
+                        "Sucesso! = " + resposta,
+                        Snackbar.LENGTH_LONG);
+                mensagem.show();
+            }
+        } catch (Exception e) { e.printStackTrace(); }
+
+    }
 
 }
