@@ -146,7 +146,7 @@ public class CadMotoristaFragment extends Fragment implements View.OnClickListen
                 //enviar objeto para o REST Server
                 jsonObjectReq = new JsonObjectRequest(
                         Request.Method.POST,
-                        "http://10.0.2.2:8080/segServer/rest/usuario",
+                        "http://10.0.2.2:8080/motoristarest/rest/motorista",
                         u.toJsonObject(), this, this);
                 requestQueue.add(jsonObjectReq);
 
