@@ -92,7 +92,7 @@ public class CadMotoristaFragment extends Fragment implements View.OnClickListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_cad_motorista, container, false);
+        this.root = inflater.inflate(R.layout.fragment_cad_motorista, container, false);
 
         // Inflate the layout for this fragment
         this.etNome = (EditText) root.findViewById(R.id.etName);
@@ -108,14 +108,11 @@ public class CadMotoristaFragment extends Fragment implements View.OnClickListen
         this.btSalvar.setOnClickListener(this);
         //instanciando a fila de requests - caso o objeto seja o root
         this.requestQueue = Volley.newRequestQueue(root.getContext());
-    //instanciando a fila de requests - caso o objeto seja o view
-        this.requestQueue = Volley.newRequestQueue(root.getContext());
     //inicializando a fila de requests do SO
         this.requestQueue.start();
+        //return root;
         return this.root;
 
-
-        //return root;
 
 
 
@@ -178,14 +175,14 @@ public class CadMotoristaFragment extends Fragment implements View.OnClickListen
             else {
                 //sucesso
                 //limpar campos da tela
-                this.txNome.setText("");
-                this.txEmail.setText("");
-                this.txSenha.setText("");
-                this.txCnh.setText("");
-                this.txCategoria.setText("");
-                this.txCpf.setText("");
-                this.txData.setText("");
-                this.txAceito.setText("");
+                this.etNome.setText("");
+                this.etEmail.setText("");
+                this.etSenha.setText("");
+                this.etCnh.setText("");
+                this.Categoria.setSelection(0);
+                this.etCpf.setText("");
+                this.etData.setText("");
+                this.cbAceite.setText("");
 
 //mensagem de sucesso
                 Snackbar mensagem = Snackbar.make(root,
