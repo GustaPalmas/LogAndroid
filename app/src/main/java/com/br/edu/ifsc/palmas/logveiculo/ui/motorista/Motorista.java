@@ -12,11 +12,12 @@ import java.util.Date;
 public class Motorista {
     //atributos
     private boolean aceito;
+    private String id;
     private String nome;
     private String email;
     private String senha;
     private String data;
-    private byte categoria;
+    private int categoria;
     private String cpf;
     private String cnh;
 
@@ -70,6 +71,12 @@ public class Motorista {
     public String getCnh() {
         return cnh;
     }
+    public String getId() {
+        return id;
+    }
+    public void setId(String id){
+        this.id = id;
+    }
 
     public void setCnh(String cnh){
         this.cnh=cnh;
@@ -82,11 +89,11 @@ public class Motorista {
         this.cpf=cpf;
     }
 
-    public byte getCategoria() {
+    public int getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(byte categoria){
+    public void setCategoria(int categoria){
         this.categoria=categoria;
     }
 
@@ -95,6 +102,7 @@ public class Motorista {
         try{
 
             this.setCpf((String) jp.get("cpf"));
+            this.setId((String) jp.get("id"));
             this.setNome((String) jp.get("nome"));
             this.setSenha((String) jp.get("senha"));
             this.setEmail((String) jp.get("email"));
@@ -102,7 +110,7 @@ public class Motorista {
             this.setAceito(bool);
             this.setData((String) jp.get("data"));
             this.setCnh((String) jp.get("cnh"));
-            Byte codigo = (byte) jp.get("categoria");
+            int codigo = (int) jp.get("categoria");
             this.setCategoria(codigo);
         }
         catch (JSONException e){
@@ -114,6 +122,7 @@ public class Motorista {
         this.setCategoria((byte)0);
         this.setAceito(false);
         this.setCpf("");
+        this.setId("");
         this.setCnh("");
         this.setData("");
         this.setNome("");
@@ -124,14 +133,15 @@ public class Motorista {
     public JSONObject toJsonObject () {
         JSONObject json = new JSONObject();
         try {
-            json.put("Cpf", this.cpf);
-            json.put("Cnh", this.cnh);
-            json.put("Nome", this.nome);
-            json.put("Senha", this.senha);
-            json.put("Email", this.email);
-            json.put("Data", this.data);
+            json.put("id", this.id);
+            json.put("cpf", this.cpf);
+            json.put("cnh", this.cnh);
+            json.put("nome", this.nome);
+            json.put("senha", this.senha);
+            json.put("email", this.email);
+            json.put("data", this.data);
             json.put("categoria", this.categoria);
-            json.put("Aceito", this.aceito);
+            json.put("aceito", this.aceito);
         } catch (JSONException e) {
             e.printStackTrace();
         }
