@@ -58,7 +58,7 @@ public class Motorista {
     public String getData() {return data;}
     public void setData(String data) {
         SimpleDateFormat formato =
-                new SimpleDateFormat("dd/MM/yyyy");
+                new SimpleDateFormat("dd-MM-yyyy");
         try {
             Date date = (Date) formato.parse(data);
 //se chegar até aqui não deu erro no parser
@@ -71,15 +71,14 @@ public class Motorista {
     public String getCnh() {
         return cnh;
     }
+    public void setCnh(String cnh){
+        this.cnh=cnh;
+    }
     public String getId() {
         return id;
     }
     public void setId(String id){
         this.id = id;
-    }
-
-    public void setCnh(String cnh){
-        this.cnh=cnh;
     }
     public String getCpf() {
         return cpf;

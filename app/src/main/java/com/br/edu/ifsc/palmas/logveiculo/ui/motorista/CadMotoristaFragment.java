@@ -130,16 +130,17 @@ public class CadMotoristaFragment extends Fragment implements View.OnClickListen
                 u.setSenha(this.etSenha.getText().toString());
                 u.setCnh(this.etCnh.getText().toString());
                 u.setCpf(this.etCpf.getText().toString());
-                u.setData(this.etData.getText().toString());
+                String dt = this.etData.getText().toString();
+                char[] charArray = dt.toCharArray();
+                for (int pos = 0; pos < dt.length(); pos++) {
+                    if (charArray[pos] == '/'){
+                        charArray[pos] = '-';
+                    }
+                }
+                dt = new String(charArray);
+                u.setData(dt);
                 u.setAceito(this.cbAceite.isChecked());
                 u.setCategoria((byte) this.Categoria.getSelectedItemPosition());
-
-            //mensagem de sucesso
-            Context context = view.getContext();
-            CharSequence text = "Salvo com Sucesso!";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
                 //enviar objeto para o REST Server
                 jsonObjectReq = new JsonObjectRequest(
                         Request.Method.POST,
