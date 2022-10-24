@@ -4,9 +4,8 @@
     <string name="title_dashboard">Painel</string>
     <string name="title_notifications">Notificações</string>
     <string name="title_cad_motorista">CadMotorista</string>
+    <string name="title_con_motorista">ConMotorista</string>
     <!-- TODO: Remove or change this placeholder text -->
-
-
     <string-array name="categoria_usuario">
         <item> A</item>
         <item> B</item>

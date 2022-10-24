@@ -8,8 +8,12 @@
 
     <item
         android:id="@+id/navigation_cad_motorista"
-        android:icon="@android:drawable/ic_input_add"
+        android:icon="@android:drawable/ic_menu_add"
         android:title="@string/title_cad_motorista" />
+    <item
+        android:id="@+id/navigation_con_motorista"
+        android:icon="@android:drawable/ic_menu_view"
+        android:title="@string/title_con_motorista" />
 
     <item
         android:id="@+id/navigation_dashboard"
