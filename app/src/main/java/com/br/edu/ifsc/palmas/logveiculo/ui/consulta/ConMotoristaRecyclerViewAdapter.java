@@ -35,9 +35,7 @@ public class ConMotoristaRecyclerViewAdapter extends RecyclerView.Adapter<ConMot
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(String.valueOf(mValues.get(position).getId()));
         holder.mContentView.setText(mValues.get(position).getNome());
-        holder.mContentView.setText(mValues.get(position).getEmail());
-        holder.mIdView.setText(String.valueOf(mValues.get(position).getCpf()));
-        holder.mIdView.setText(String.valueOf(mValues.get(position).getCategoria()));
+
     }
 
     @Override

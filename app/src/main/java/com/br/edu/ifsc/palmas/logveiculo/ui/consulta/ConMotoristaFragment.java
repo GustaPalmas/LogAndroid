@@ -86,10 +86,10 @@ public class ConMotoristaFragment extends Fragment implements
         JSONArray jsonArray = new JSONArray();
         //objeto com informações de filtro da consulta
         Motorista motorista = new Motorista();
-        motorista.setId("");
-        motorista.setNome("");
-        motorista.setEmail("");
+        //motorista.setId("");
         motorista.setCpf("");
+        motorista.setNome("");
+        //motorista.setEmail("");
         //incluindo objeto no array de envio
         jsonArray.put(motorista.toJsonObject());
 //requisição para o Rest Server
